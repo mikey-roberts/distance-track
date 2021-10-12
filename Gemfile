@@ -19,6 +19,11 @@ gem 'puma', '~> 5.0'
 # Use to make API calls
 gem "rest-client"
 
+# Use to work out distance between users location and London
+gem 'geokit'
+
+# Installed for debugging
+gem 'pry', '~> 0.13.1'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
