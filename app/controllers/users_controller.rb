@@ -10,18 +10,26 @@ class UsersController < ApplicationController
     url = "https://bpdts-test-app.herokuapp.com/users"
     response = RestClient.get(url)
     data = JSON.parse(response.body)
-    within_50_miles(data)
+    check_distance(data)
     render json: @filtered_users
   end
 
   private
   
-  def within_50_miles(location)
+  def check_distance(location)
     @filtered_users = []
     user_location = ""
     location.each do |loc|
-    user_location = loc["latitude"].to_s + ", " + loc["longitude"].to_s
-    @filtered_users.push(loc) if LONDON_COORDS.distance_to(user_location) <= 50
+    user_location = combine_lat_long(loc)
+    @filtered_users.push(loc) if within_distance?(user_location)
     end
+  end
+
+  def combine_lat_long(loc)
+    loc["latitude"].to_s + ", " + loc["longitude"].to_s
+  end
+
+  def within_distance?(user_location)
+    LONDON_COORDS.distance_to(user_location) <= 50
   end
 end
