@@ -7,14 +7,18 @@ class UsersController < ApplicationController
   LONDON_COORDS = Geokit::LatLng.new(51.509865,-0.118092)
 
   def get_users
-    url = "https://bpdts-test-app.herokuapp.com/users"
-    response = RestClient.get(url)
-    data = JSON.parse(response.body)
+    data = fetch_users
     check_distance(data)
     render json: @filtered_users
   end
 
   private
+
+  def fetch_users
+    url = "https://bpdts-test-app.herokuapp.com/users"
+    response = RestClient.get(url)
+    JSON.parse(response.body)
+  end
   
   def check_distance(location)
     @filtered_users = []
