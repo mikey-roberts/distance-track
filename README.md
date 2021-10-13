@@ -7,9 +7,9 @@ I utilised the rest-client gem to fetch the data through rails and the geokit ge
 
 Step 1. Clone from Github repository
 
-Step 2. Runs rails server 'rails s'
+Step 2. Runs rails server ```rails s```
 
-Step 3. access via http://127.0.0.1:3000/users 
+Step 3. Access via http://localhost:3000/users 
 
 
 
