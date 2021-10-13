@@ -7,13 +7,13 @@ class UsersController < ApplicationController
   LONDON_COORDS = Geokit::LatLng.new(51.509865,-0.118092)
 
   def index
-    get_users
+    request_data
     render json: @filtered_users
   end
 
-  def get_users
-    data = fetch_users
-    check_distance(data)
+  def request_data
+    users = fetch_users
+    check_distance(users)
   end
 
   def fetch_users
